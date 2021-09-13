@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  mariadb:
+    image: mariadb:10.6.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root00
+
+    networks:
+      - default
+
+    ports:
+      - 3306:3306
+
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  webserver:
+    image: byloth/cloudlog:latest
+    depends_on:
+      - mariadb
+
+    environment:
+      CLOUDLOG_DBHOST: mariadb
+      CLOUDLOG_DBUSER: cloudlog
+      CLOUDLOG_DBPASS: cloudlog00
+
+    networks:
+      - default
+      - exposed
+
+    ports:
+      - 80:80
+
+networks:
+  default:
+  exposed:
+    external: true
+
+volumes:
+  mariadb_data:
