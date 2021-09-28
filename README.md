@@ -23,7 +23,7 @@ $ docker-compose exec mariadb bash
 > GRANT ALL PRIVILEGES ON cloudlog.* TO 'cloudlog'@'%';
 > QUIT;
 
-# ^C
+# ^D
 
 $ docker-compose down
 ```
