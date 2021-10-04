@@ -15,6 +15,7 @@ services:
       - mariadb_data:/var/lib/mysql
 
   webserver:
+    build: .
     image: byloth/cloudlog:latest
     depends_on:
       - mariadb
